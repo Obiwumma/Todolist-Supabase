@@ -1,0 +1,6 @@
+VtsUrXnBympEcrNt
+api key
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9kc3VubmN5cXp4cm5sdG1tb2ViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk4NzY3MzIsImV4cCI6MjA3NTQ1MjczMn0.NtyJaOMPSNgr9nFP-m4jKOvhvENIdkMb4rd0O2qjCJ0
+
+url
+https://odsunncyqzxrnltmmoeb.supabase.co
