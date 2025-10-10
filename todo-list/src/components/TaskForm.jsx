@@ -2,26 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import supabase from '../supabaseClient';
 
-function TaskForm() {
-  const [todo, setTodo] = useState("")
+function TaskForm({ todo, setTodo, handleAdd }) {
 
-  console.log(todo);
-
-  const handleAdd = async (e) => {
-    e.preventDefault();
-
-    const newTodoData = {
-      name:todo,
-      isCompleted: false
-    }
-    const {data, error} = await supabase.from('TodoListItem').insert(newTodoData).single()
-
-    if (error) {
-      console.error("Error adding Todo:", error);
-    } else {
-      setTodo((prev) => [...prev, data])
-    }
-  }
   
   return (
     // <!-- Add Task Form -->
