@@ -4,7 +4,7 @@ import supabase from './supabaseClient.js'
 
 import Header from './components/header'
 import TaskForm from './components/TaskForm'
-import TaskList from './components/TaskList'
+import TaskList from './components/TaskList.jsx'
 import Footer from './components/Footer'
 import { useEffect } from 'react'
 
@@ -13,7 +13,6 @@ function App() {
 
   const [todo, setTodo] = useState("")
 
-  console.log(todo);
 
   const handleAdd = async (e) => {
     e.preventDefault();
@@ -23,17 +22,15 @@ function App() {
       isCompleted: false
     }
     const {data, error} = await supabase.from('TodoListItem').insert(newTodoData).single()
-
+    fetchTodos()
     if (error) {
       console.error("Error adding Todo:", error);
     } else {
       setTodo(() => [data])
     }
-    fetchTodos()
+    
   }
-
-    useEffect(() => {
-      const fetchTodos =async () => {
+  const fetchTodos =async () => {
          const {data, error} = await supabase
         .from("TodoListItem")
         .select("*");
@@ -41,16 +38,18 @@ function App() {
         if (error) {
           console.error("Error fetching Todo:", error);
         } else {
-          console.log("Fetched todos:", data);
+          // console.log("Fetched todos:", data);
           setTodoList(data);
         }
       }
+
+    useEffect(() => {
       fetchTodos()
       }, []);
 
-       useEffect(() => {
-  console.log("Todo names:", todoList.map(todo => todo.name));
-}, [todoList]);     
+//   useEffect(() => {
+//   console.log("Todo names:", todoList.map(todo => todo.name));
+// }, [todoList]);     
 
 
   return (
