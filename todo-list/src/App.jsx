@@ -30,7 +30,7 @@ function App() {
     }
     
   }
-  const fetchTodos =async () => {
+  const fetchTodos = async () => {
          const {data, error} = await supabase
         .from("TodoListItem")
         .select("*");
@@ -47,6 +47,22 @@ function App() {
       fetchTodos()
       }, []);
 
+    const updateTodo = async () => {
+      const { data, error } = await supabase.from('TodoListItem').update({name:"stop"}).eq("id",11).select()
+      console.log(data);
+      
+    }
+    const deleteTodo = async (id) => {
+      const { data, error } = await supabase.from('TodoListItem').delete().eq("id",id).select()
+      
+       if (error) {
+        console.error("Error deleting todo:", error);
+      } else {
+        console.log("Deleted row:", data);
+      }
+      fetchTodos()
+    }
+
 //   useEffect(() => {
 //   console.log("Todo names:", todoList.map(todo => todo.name));
 // }, [todoList]);     
@@ -56,7 +72,7 @@ function App() {
     <div className='p-8'>
       <Header/>
       <TaskForm todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
-      <TaskList todoList={todoList} setTodoList={setTodoList} />
+      <TaskList todoList={todoList} setTodoList={setTodoList} updateTodo={updateTodo} deleteTodo={deleteTodo} />
       <Footer/>
     </div>
   )

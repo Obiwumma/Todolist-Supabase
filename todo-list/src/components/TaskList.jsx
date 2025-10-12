@@ -1,5 +1,5 @@
 
-function TaskList({todoList}) {
+function TaskList({todoList, updateTodo, deleteTodo}) {
   
   
   return (
@@ -13,8 +13,8 @@ function TaskList({todoList}) {
           <span className="text-gray-700">{todo.name}</span>
         </div>
         <div className="flex gap-2">
-          <button className="px-3 py-1 text-sm text-blue-600 border border-blue-600 rounded hover:bg-blue-600 hover:text-white transition">Edit</button>
-          <button className="px-3 py-1 text-sm text-red-600 border border-red-600 rounded hover:bg-red-600 hover:text-white transition">Delete</button>
+          <button className="px-3 py-1 text-sm text-blue-600 border border-blue-600 rounded hover:bg-blue-600 hover:text-white transition" onClick={updateTodo}>Edit</button>
+          <button className="px-3 py-1 text-sm text-red-600 border border-red-600 rounded hover:bg-red-600 hover:text-white transition" onClick={() => deleteTodo(todo.id)}>Delete</button>
         </div>
       </li>
       ))}
