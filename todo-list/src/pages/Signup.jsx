@@ -1,6 +1,12 @@
-import React from 'react'
+import { use } from "react"
+import { userAuth } from "../context/AuthContext"
 
 function Signup() {
+
+  const {session} = userAuth()
+
+  console.log(session);
+  
   return (
     <div className='flex items-center justify-center'>
       <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
