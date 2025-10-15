@@ -55,8 +55,23 @@ const userSignin = async (email, password) => {
   return { success: true, data };
 }
 
+
+// signout
+const userSignout = async () => {
+  
+const { error } = await supabase.auth.signOut()
+
+if (error) {
+      console.log("Error Logging OUT:", error);
+    } else {
+      console.log("Logged OUT succesfully:");
+    }
+
+}
+
+
   return (
-    <AuthContext.Provider value={{session, signUpNewUser, userSignin}}>
+    <AuthContext.Provider value={{session, signUpNewUser, userSignin, userSignout}}>
       {children}
     </AuthContext.Provider>
   )

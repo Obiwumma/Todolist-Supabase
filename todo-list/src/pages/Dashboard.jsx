@@ -1,10 +1,10 @@
-import React from 'react'
+import App from "../App"
 
 function Dashboard() {
   return (
-    <div>
-      <h1>Welcome to the Dasboard</h1>
-    </div>
+    <>
+      <App/>
+    </>
   )
 }
 
