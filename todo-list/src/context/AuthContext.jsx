@@ -28,7 +28,7 @@ export const AuthContextProvider = ({children}) => {
     }
     return { success: true, data };
   }
-console.log(session?.user?.user_metadata?.username);
+// console.log(session?.user?.user_metadata?.username);
 
   useEffect(() => {
   const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
@@ -37,10 +37,26 @@ console.log(session?.user?.user_metadata?.username);
 
   return () => subscription.unsubscribe();
 }, []);
+ 
 
+// signin
+const userSignin = async (email, password) => {
+  
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  })
+  if (error) {
+      console.log("Error Logging user:", error);
+    } else {
+      console.log("Logged In succesfully:", data);
+    }
+
+  return { success: true, data };
+}
 
   return (
-    <AuthContext.Provider value={{session, signUpNewUser}}>
+    <AuthContext.Provider value={{session, signUpNewUser, userSignin}}>
       {children}
     </AuthContext.Provider>
   )
