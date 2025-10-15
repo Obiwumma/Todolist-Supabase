@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {useNavigate} from "react-router-dom"
+import {useNavigate, Link} from "react-router-dom"
 import { userAuth } from '../context/AuthContext'
 
 function Signin() {
@@ -67,7 +67,7 @@ function Signin() {
 
         <p className="text-center text-sm text-gray-600 mt-4">
           Don’t have an account?
-          <a href="signup.html" className="text-indigo-600 font-medium hover:underline">Sign Up</a>
+          <Link to={"/signup"} className="text-indigo-600 font-medium hover:underline">Sign Up</Link>
         </p>
       </div>
     </div>
