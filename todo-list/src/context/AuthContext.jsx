@@ -25,10 +25,12 @@ export const AuthContextProvider = ({children}) => {
       console.log("Added succesfully:", data);
 
       
+      return { success: true, data };
     }
-    return { success: true, data };
   }
 // console.log(session?.user?.user_metadata?.username);
+const userName = session?.user?.user_metadata?.username
+
 
   useEffect(() => {
   const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
@@ -71,7 +73,7 @@ if (error) {
 
 
   return (
-    <AuthContext.Provider value={{session, signUpNewUser, userSignin, userSignout}}>
+    <AuthContext.Provider value={{session, signUpNewUser, userSignin, userSignout, userName}}>
       {children}
     </AuthContext.Provider>
   )
