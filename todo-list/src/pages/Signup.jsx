@@ -1,11 +1,37 @@
-import { use } from "react"
+import { useState } from "react"
+import {useNavigate} from "react-router-dom"
 import { userAuth } from "../context/AuthContext"
 
 function Signup() {
 
-  const {session} = userAuth()
+  const [email, setEmail] = useState("")
+  const [fullName, setFullName] = useState("")
+  const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState("")
 
-  console.log(session);
+  const {session, signUpNewUser} = userAuth()
+  const navigate = useNavigate()
+  // console.log(session);
+
+  const handleSignup = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    try {
+      const result = await signUpNewUser(e, email, password, fullName)
+      if (result?.success) {
+        navigate("/signin")
+        console.log("Gooood");
+      } else {
+        console.log("badddd");
+        
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+    finally {
+      setLoading(false)
+    }
+  }
   
   return (
     <div className='flex items-center justify-center'>
@@ -18,7 +44,9 @@ function Signup() {
               type="text"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
               placeholder="John Doe"
+              value={fullName}
               required
+              onChange={(e) => setFullName(e.target.value)}
             />
           </div>
 
@@ -28,7 +56,9 @@ function Signup() {
               type="email"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
               placeholder="you@example.com"
+              value={email}
               required
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -38,13 +68,16 @@ function Signup() {
               type="password"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
               placeholder="••••••••"
+              value={password}
               required
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
           <button
             type="submit"
             className="w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition duration-200"
+            onClick={(e) =>handleSignup(e)}
           >
             Sign Up
           </button>
