@@ -16,7 +16,7 @@ function Signin() {
     try {
       const result = await userSignin(email, password)
       if (result?.success) {
-        navigate("/dashboard")
+        navigate("/")
         console.log("Gooood");
       } else {
         console.log("badddd");

@@ -52,9 +52,9 @@ const userSignin = async (email, password) => {
       console.log("Error Logging user:", error);
     } else {
       console.log("Logged In succesfully:", data);
+      return { success: true, data };
     }
 
-  return { success: true, data };
 }
 
 

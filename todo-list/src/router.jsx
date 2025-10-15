@@ -6,10 +6,10 @@ import Dashboard from "./pages/Dashboard"
 import ProtectedRoute from "./pages/ProtectedRoute"
 
 const router = createBrowserRouter([
-  {path: "/", element: <App/>  },
+  // {path: "/", element: <App/>  },
   {path: "/signup", element: <Signup/>  },
   {path: "/signin", element: <Signin/>  },
-  {path: "/dashboard", element: <ProtectedRoute> <Dashboard/> </ProtectedRoute>   },
+  {path: "/", element: <ProtectedRoute> <Dashboard/> </ProtectedRoute>   },
 ])
 
 export default router;
